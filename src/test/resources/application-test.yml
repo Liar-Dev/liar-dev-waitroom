@@ -1,0 +1,72 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          socket: DEBUG
+        messaging: DEBUG
+        transaction:
+          interceptor: DEBUG
+        datasource:
+          DataSourceTransactionManager: DEBUG
+        orm:
+          jpa:
+            JpaTransactionManager: DEBUG
+    hibernate:
+      resource:
+        transaction: DEBUG
+    root: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, busrefresh
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ---- secret ----
+
+greeting:
+  message: wait-service
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  mvc:
+    static-path-pattern: /static/**
+
+  application:
+    name: wait-service
+
+  messages:
+    basename: errors
+    encoding: utf-8
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/liardev2
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6380

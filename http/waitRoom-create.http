@@ -1,0 +1,22 @@
+### 1. waitRoom 생성
+
+POST {{baseUrl}}/waitroom/create
+Content-Type: application/json
+Accept: */*
+Connection: keep-alive
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjODdhZmQ0OS05NTZmLTRlNGMtOTgyOS1mMmYyNGExOTM2OTUiLCJhdXRoIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2Nzk5NjMyMTEsImV4cCI6MTY3OTk4NDg1Nn0.tzy_LPCZLde_5HP2p7eDjAYNEaMAQjhECDMANMz2gvx0ywJNRlzZR9v4MHeZMTo3Sm9n-YcawpcmoauyYc9uYw
+RefreshToken: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjODdhZmQ0OS05NTZmLTRlNGMtOTgyOS1mMmYyNGExOTM2OTUiLCJhdXRoIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2Nzk5NjMyMTEsImV4cCI6MTY4MDU2ODEwOH0.k0ugqBhAXWAI_lSqTCfkbIs1E8eTJWqRUIvVHdefWopYRrj4HOnc04ehSSGXEHe3B-TEaPQ8fdN5drevWkTvFg
+userId: c87afd49-956f-4e4c-9829-f2f24a193695
+
+{
+  "userId": "c87afd49-956f-4e4c-9829-f2f24a193695",
+  "roomName": "TestWaitRoom",
+  "limitMembers": 4
+}
+
+> {%
+    client.test("waitRoom 반환", function() {
+        client.assert(response.status === 200, "Response status is OK");
+        client.global.set("waitRoomId", response.body.body);
+    });
+%}

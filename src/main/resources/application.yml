@@ -1,0 +1,57 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.security: debug
+    org.hibernate.SQL: debug
+    org.springframework.web.socket : debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, busrefresh
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ---- secret ----
+
+greeting:
+  message: wait-service
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  application:
+    name: wait-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/liardev2
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  messages:
+    basename: errors
+    encoding: utf-8
+
+  data:
+    redis:
+      host: localhost
+      port: 6380
+

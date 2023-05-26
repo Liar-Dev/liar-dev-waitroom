@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface WaitRoomCompleteRepository extends JpaRepository<WaitRoomComplete, Long> {
+public interface WaitRoomCompleteRepository extends JpaRepository<WaitRoomComplete, String> {
 
     List<WaitRoomComplete> findByHostId(String hostId);
     Optional<WaitRoomComplete> findWaitRoomCompleteByWaitRoomId(String waitRoomId);

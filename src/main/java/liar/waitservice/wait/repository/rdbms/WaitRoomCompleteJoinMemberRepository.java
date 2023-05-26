@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WaitRoomCompleteJoinMemberRepository extends JpaRepository<WaitRoomCompleteJoinMember, Long> {
+public interface WaitRoomCompleteJoinMemberRepository extends JpaRepository<WaitRoomCompleteJoinMember, String> {
 
     List<WaitRoomCompleteJoinMember> findWaitRoomJoinMemberByWaitRoomComplete(WaitRoomComplete waitRoomComplete);
 }

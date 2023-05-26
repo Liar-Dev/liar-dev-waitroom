@@ -3,6 +3,7 @@ package liar.waitservice.common.config;
 import liar.waitservice.wait.controller.handler.CustomWebSocketHandlerDecorator;
 import liar.waitservice.wait.controller.interceptor.WebsocketSecurityInterceptor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
@@ -49,7 +50,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     @Bean
-    public WebSocketHandlerDecorator customWebSocketHandlerDecorator(WebSocketHandler webSocketHandler) {
+    public WebSocketHandlerDecorator customWebSocketHandlerDecorator(@Qualifier("subProtocolWebSocketHandler") WebSocketHandler webSocketHandler) {
         return new CustomWebSocketHandlerDecorator(webSocketHandler);
     }
 }
